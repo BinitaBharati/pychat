@@ -1,0 +1,40 @@
+.footerfixedbottom 
+{
+  bottom: 0;
+  height: 60px;
+  position: absolute;  
+  width: 100%;
+  
+}
+
+
+/** https://stackoverflow.com/questions/14735274/bootstrap-css-hides-portion-of-container-below-navbar-navbar-fixed-top */
+
+body
+{
+ padding-top: 70px
+}
+
+/** Make a grey circular border appear around the cancel icon -- which actually has a square outline (view the image manually, you can see the square outline,
+inside which the cancel circular icon is present) but square outline can not be seen as the background div is also same color */
+#chatWindowCancel:hover
+{
+	border:10px solid #dddddd ;
+	border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+}
+
+/* Overriding Bootstrap card class white background color. */
+.card {
+	background-color: transparent
+}
+
+#chatroomconfig1 
+{
+	padding: 20px;
+	background-color: white;
+	border-radius: 20px
+}
+
+	

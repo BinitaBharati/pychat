@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Homepage - Start Bootstrap Template</title>
+	{% load static %}
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+	{% load static %}
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/shop-homepage.css" %}" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+	<script>
+	var globalObj = {'mainTemplate' : 
+			`<h4 class="card-title">
+				<a href="#">Welcome {{ userName }}</a>
+			</h4>
+			<h5>$24.99</h5>
+			<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>`}
+	</script>
+	
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pychat/logout/dumboo/">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row" id="div1">
+
+        <div class="col-lg-3">
+
+          <h1 class="my-4">Lets talk!</h1>
+		  <!-- Note : Django templating language is not same as python syntax -->
+		  {% ifnotequal request.session.user "none" %}
+		  {% if request.session.user == 'admin' %}
+          <div class="list-group">
+            <a href="#" class="list-group-item">Add User</a>
+            <a href="#" class="list-group-item">Delete Uer</a>
+            <a href="#" class="list-group-item">Configure chatroom</a>
+          </div>
+		  {% else %}
+		  <div class="list-group" id="joinchat">
+            <a href="" class="list-group-item" v-on:click="handleJoinChatRoomClick($event)">Join chatroom</a>
+          </div>
+		  <script>
+			var chatRoomHandlerVue = new Vue({
+            el: '#joinchat',
+            data: {
+               
+            },
+            methods : {
+               handleJoinChatRoomClick : function(event) {
+                  alert("huha");
+				  globalObj.mainTemplate = "DUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUHHHHHHHHHHHHHHHHHHHHHHH"
+               }
+            },
+         });
+		  </script>
+		  {% endif %}
+		 {% endifnotequal %}
+        </div>
+        <!-- /.col-lg-3 -->
+		<div></div>
+		{% if request.session.user == 'none' %}		
+<div class="col-lg-9">
+   <div class="row">
+      <!-- Login form. Taken from https://startbootstrap.com/snippets/login/ -->
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+               <div class="card card-signin my-5">
+                  <div class="card-body">
+                     <h5 class="card-title text-center">Sign In</h5>
+                     <form class="form-signin" action="/pychat/login/" method="post">
+                        <div class="form-label-group">
+                           <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                           <label for="inputEmail">Email address</label>
+                        </div>
+                        <div class="form-label-group">
+                           <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+                           <label for="inputPassword">Password</label>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                           <input type="checkbox" class="custom-control-input" id="customCheck1">
+                           <label class="custom-control-label" customCheck1">Remember password</label>
+                        </div>
+						<div class="custom-control custom-checkbox mb-3">
+                           <input type="checkbox" class="custom-control-input" id="isAdminCheck" name="isAdminCheck">
+                           <label class="custom-control-label"  for="isAdminCheck">Is admin ?</label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                        <hr class="my-4">
+                     </form>
+                  </div>
+				  
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- /.row -->
+</div>	
+        {% else %}	
+<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">	
+<!-- <div class="col-lg-6 col-md-6 mb-6"> -->
+   <!-- class card h-100 is applying border:1px solid. I need to disable this border -->
+   <div class="card h-100" style="border:none">
+      <div class="card-body" id="main-body" v-html="mainTemplate">
+      </div>
+	  <script>
+	  var vm = new Vue(
+	  {
+					el: '#main-body',
+					data: globalObj
+	  })
+	  </script>
+   </div>
+</div>
+
+		
+		{% endif %}
+        
+        <!-- /.col-lg-9 -->
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+  </body>
+
+</html>
