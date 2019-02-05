@@ -1,6 +1,6 @@
 # pychat
 
-This chat server project makes use of Django channels which is an implenmentation of  web sockets.
+This chat server project makes use of Django channels which is an implementation of  web sockets.
 
 ## Installation
 This project comes with a Docker image. This image will install the entire set up including Python3, Django 2 and any other dependencies.
