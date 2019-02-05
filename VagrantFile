@@ -1,0 +1,26 @@
+VAGRANTFILE_API_VERSION = "2"
+#Refer to ND1.bmp for network topology refernce
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+
+  config.vm.box = "ubuntu/xenial64"
+  
+  #net1mc2	
+         config.vm.define :net1mc2 do |net1mc2|
+          net1mc2.vm.provider :virtualbox do |v|
+           v.name = "net1mc2"
+           v.customize ["modifyvm", :id, "--memory", "2048"]
+           #v.gui = true
+     
+         end
+         net1mc2.vm.network :private_network, ip: "192.168.10.13"
+         net1mc2.vm.hostname = "net1mc2"
+         net1mc2.vm.provision :shell, path: "setup/target/scripts/install_vm.sh"
+    end
+    
+    
+
+
+
+end
