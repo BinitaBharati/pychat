@@ -46,3 +46,6 @@ dos2unix setup/target/scripts/install_chatserver_main.sh  setup/target/scripts/i
 chmod +x setup/target/scripts/install_chatserver_main.sh
 setup/target/scripts/install_chatserver_main.sh
 ```
+
+##Screenshot
+![alt text](docs/image1.png)
