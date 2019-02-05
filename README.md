@@ -47,5 +47,5 @@ chmod +x setup/target/scripts/install_chatserver_main.sh
 setup/target/scripts/install_chatserver_main.sh
 ```
 
-##Screenshot
+## Screenshot
 ![alt text](docs/image1.png)
