@@ -48,4 +48,7 @@ chmod +x setup/target/scripts/install_chatserver_main.sh
 setup/target/scripts/install_chatserver_main.sh
 ```
 
+## License
 
+Copyright © 2019 Binita Bharati <br />
+Distributed under the Apache license 2.0. 
